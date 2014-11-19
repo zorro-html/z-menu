@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+
+<title>Jie Menu</title>
+
+<script src="../webcomponentsjs/webcomponents.js"></script>
+<link rel="import" href="jie-menu.html">
+<style>
+  jie-menu {
+    float: left;
+  }
+</style>
+
+</head>
+<body>
+
+<p>You are choosing: <label id="selected"></label></p>
+
+<jie-menu>
+  <li>ITEM</li>
+  <li>ITEM 2</li>
+  <li disabled>ITEM 3</li>
+  <hr>
+  NOT SHOWN
+  <li>ITEM 4</li>
+</jie-menu>
+
+<script>
+  var label = document.querySelector('#selected');
+  var menu = document.querySelector('jie-menu');
+
+  menu.addEventListener('select', function (event) {
+    label.textContent = event.detail.selected.textContent;
+  });
+</script>
+
+</body>
+</html>
