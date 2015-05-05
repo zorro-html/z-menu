@@ -1,27 +1,42 @@
-# menu
+# `<z-menu>`
 
-菜单
+Menu element whose item can be chosen by click
 
-* 只会显示子 `<li>` 和子 `<hr>` 元素
-* 有 `:hover`, `:active`, `:focus`, `[disabled]` 的状态
-* 没有 `[disabled]` 状态的 `<li>` 可以被点击，会触发 `select` 事件，被点击的元素会被写入 `event.detail.selected`
+- only show `<li>` and `<hr>` child elements
+- supported `:hover`, `:active`, `:focus`, `[disabled]` status
+- `<li>` items could bt clicked and fire an event with `event.detail.selected`
+- `<li>` items with `[disabled]` could not be clicked.
 
-# Example
+## Events
+
+- `select`
+
+## Examples
 
 ```
-<jie-menu>
-  <li>ITEM</li>
-  <li>ITEM 2</li>
-  <li disabled>ITEM 3</li>
-  <hr>
-  <li>ITEM 4</li>
-</jie-menu>
+<style>
+  .container::before,
+  .container::after {content: ""; clear: both; display: table;}
+</style>
+
+<p>You are choosing: <label id="z-menu-selected"></label></p>
+
+<div class="container">
+  <z-menu id="z-menu-test" style="float: left;">
+    <li>ITEM</li>
+    <li>ITEM 2</li>
+    <li disabled>ITEM 3</li>
+    <hr>
+    <li>ITEM 4</li>
+  </z-menu>
+</div>
 
 <script>
-  var menu = document.querySelector('jie-menu');
+  var label = document.querySelector('html /deep/ #z-menu-selected');
+  var menu = document.querySelector('html /deep/ #z-menu-test');
 
-  menu.addEventListener('select', function (e) {
-    // e.detail.selected
+  menu.addEventListener('select', function (event) {
+    label.textContent = event.detail.selected.textContent;
   });
 </script>
 ```
